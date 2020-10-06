@@ -1,0 +1,1 @@
+const projects = [{"id":1,"title":"Minesweeper App","description":"A simple react game of avoiding a mine to stay alive","url":"https://gentle-tor-94964.herokuapp.com/"},{"id":2,"title":"Online store","description":"Online store created with HTML, CSS and JavaScript.","url":"https://git.com/myrepos/shop/index"}]; module.exports = projects 
