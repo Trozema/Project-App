@@ -12,14 +12,6 @@ app.use(express.json());
 
 const idFilter = (req) => (projects) => projects.id === parseInt(req.params.id);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('frontend/build'));
-  
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
-	});
-}
-
 //Get all the projects in the object Array//
 
 app.get('/api', (req, res) => res.json(projects));
@@ -119,10 +111,19 @@ app.put('/api/:id', (req, res) => {
 
 //This ensure the app server is working correctly//
 
-app.use(function(err, req, res, next) {
-	console.log(err.stack);
-	res.status(500).send('Something broke!');
-});
+// app.use(function(err, req, res, next) {
+// 	console.log(err.stack);
+// 	res.status(500).send('Something broke!');
+// });
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+	});
+}
+
 
 //This listens on localhost port 3000 //
 const PORT = process.env.PORT || 3001;
